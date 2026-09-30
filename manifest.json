@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "product": "tradingagents-windows",
+  "version": "1.0.0",
+  "released": "2026-09-30",
+  "tradingagents_commit": "35543d0248bf89fcb92b17a15858ad0c0e940687",
+  "notes": "First signed release. Baseline: matches the installer that ships with TradingAgents v0.5.1 (commit 35543d0). Adds \"Check for updates\" and \"Send diagnostics\".",
+  "files": [
+    {
+      "path": "run.ps1",
+      "sha256": "42f7f6e2fe5fd0433f8c0e1171b3c246d4be2d2eed7b915fb2e14243fc0c15e2",
+      "size": 2567
+    },
+    {
+      "path": "run_analysis.py",
+      "sha256": "15202fe6b0f5935006109a8650e75fb9b5c035263d6eab66531c2761cdee3c94",
+      "size": 14043
+    },
+    {
+      "path": "Run TradingAgents.bat",
+      "sha256": "218d8b47e3ef9d461dade2193fe3b89d4de8b5be278c6fa3f962ae9e93af1ae8",
+      "size": 394
+    },
+    {
+      "path": "constraints.txt",
+      "sha256": "c6378cf4b9d52e43a3080dc6bd4725ea2fafc30ba9c738004ac83691dda18c5e",
+      "size": 1830
+    },
+    {
+      "path": "READ ME FIRST.txt",
+      "sha256": "d3654a4ac0ec8171ad3b2f33b3c62b1606cd5b0b6a1358157e9d4485f4246c13",
+      "size": 8847
+    },
+    {
+      "path": "update.ps1",
+      "sha256": "85b1000ad5c0f1f97864af1f5daca0edc9e1e638202f062fd87f4c49865393a4",
+      "size": 20878
+    },
+    {
+      "path": "diagnostics.ps1",
+      "sha256": "d0c8971ff5f1f892962fc75b4779f7189f01b0fe953e88e74dce6b959b8e4d99",
+      "size": 7669
+    }
+  ]
+}
