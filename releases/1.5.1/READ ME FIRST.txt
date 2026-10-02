@@ -1,0 +1,195 @@
+TRADINGAGENTS FOR WINDOWS - READ ME FIRST
+=========================================
+
+WHAT THIS IS
+TradingAgents is a free, open-source research tool (github.com/TauricResearch/TradingAgents).
+A team of AI "analysts" (market, news, social sentiment, fundamentals) studies a stock,
+a bull and a bear researcher debate it, a trader and a risk team weigh in, and a
+"Portfolio Manager" gives the final call. The AI itself comes from a provider you choose
+(Claude by Anthropic is recommended); you pay that provider per use.
+It is a research tool and it is not financial advice. By itself it does NOT place trades.
+Version 1.5.0 can optionally send PRACTICE orders to your free Alpaca paper-trading account, but only
+when you click the green button yourself or switch on the morning auto-sell (see PAPER TRADING below).
+
+WHAT YOU NEED BEFORE YOU START: PICK ONE AI PROVIDER AND GET ITS API KEY
+You need exactly ONE key, from ONE of the providers below. The setup shows this same
+list (a drop-down in the EXE, a numbered menu in the .bat) and asks for that provider's key only.
+Every provider bills per use, separate from any chat subscription you may have, so add
+some credit (or enable billing) in the provider's console before you create the key.
+
+   1. Claude (Anthropic) - RECOMMENDED. This setup was built and tested with it.
+      Key: https://console.anthropic.com/settings/keys   (starts with sk-ant-)
+      Models used: Claude Opus 5.5 for final decisions, Claude Sonnet 5 for analysts.
+   2. OpenAI (GPT)
+      Key: https://platform.openai.com/api-keys   (starts with sk-)
+      Models used: GPT-6 Sol / GPT-6 Luna.
+   3. Google (Gemini)
+      Key: https://aistudio.google.com/apikey   (starts with AIza)
+      Models used: Gemini 3.8 Flash.
+   4. xAI (Grok)
+      Key: https://console.x.ai   (starts with xai-)
+      Models used: Grok 4.6.
+   5. OpenRouter (one key, many models; this setup runs cheap DeepSeek models through it)
+      Key: https://openrouter.ai/keys   (starts with sk-or-)
+      Models used: deepseek/deepseek-v4-pro-0813 / deepseek/deepseek-v4.1-flash.
+   6. DeepSeek
+      Key: https://platform.deepseek.com/api_keys   (starts with sk-)
+      Models used: DeepSeek V4 Pro / DeepSeek Flash.
+   7. Mistral
+      Key: https://console.mistral.ai/api-keys
+      Models used: Mistral Medium 3.5 / Mistral Small 4.
+   8. Qwen (Alibaba Model Studio, international)
+      Key: https://modelstudio.console.alibabacloud.com   (starts with sk-)
+      Models used: Qwen 3.8 Max / Qwen 3.8 Flash.
+   9. GLM (Z.AI, international)
+      Key: https://z.ai
+      Models used: GLM-5.3 / GLM-5.3-Flash.
+  10. MiniMax (global)
+      Key: https://platform.minimax.io
+      Models used: MiniMax-M3.
+  11. Kimi (Moonshot AI)
+      Key: https://platform.moonshot.ai   (starts with sk-)
+      Models used: Kimi K3 / Kimi K2.6.
+
+Not needed: a key from any OTHER provider on the list (for example, if you pick Claude you
+do not need an OpenAI key, and the other way round); Yahoo Finance (stock prices, news and
+financials come from Yahoo Finance with no key); Finnhub (this version of TradingAgents does
+not use Finnhub at all); Alpha Vantage.
+
+OPTIONAL: a free FRED API key adds US economic data such as interest rates and inflation.
+Get one at https://fred.stlouisfed.org/docs/api/api_key.html  You can skip it and add it
+later by running the installer again.
+
+STEP 1 - INSTALL (one time; usually 5-15 minutes, longer on a slow connection)
+1. Double-click "TradingAgents-Setup.exe".
+   Windows may show a blue "Windows protected your PC" (SmartScreen) box, because this
+   program is not code-signed. That is expected. Click "More info", then "Run anyway".
+   (Nothing needs an administrator password to start it.)
+2. A window opens. Click "Get started", then on "Connect your AI":
+   - Claude is pre-selected and recommended; click another card to use a different provider,
+   - click "Get your key here" if you still need a key, then paste it into the key box
+     (Ctrl+V or right-click > Paste; click "Show" if you want to see what you pasted),
+   - optionally open "Advanced" to paste a free FRED key for US economic data (you can skip it),
+   - click "Test key". The setup checks your key with the provider using a free call
+     (no usage charged) and shows a green check or a clear message. You can click "Install"
+     only after the key passes. For a few providers no free check exists; the setup says so
+     and lets you continue.
+3. The "Setting things up" screen shows a progress bar, a checklist and the live details.
+   Leave it open; it moves on by itself when it is done. It will:
+   - install Python 3.12 if you don't have it (Windows may ask for permission - click Yes)
+   - download TradingAgents and everything it needs into %LOCALAPPDATA%\TradingAgents
+     (a folder Windows keeps out of OneDrive). Some steps are quiet for a while; the
+     live details show a "still installing (N min elapsed)" line every minute so you know it is alive.
+   - save your key on this PC only, and put a "TradingAgents" icon on your Desktop
+4. When you see "TradingAgents is ready", click "Open TradingAgents" to start it right away,
+   or "Open the guide" / "Open reports folder". If setup stops, the screen says why in plain
+   English; "Copy details" copies it so you can paste it to whoever set this up for you.
+
+(If you received the ZIP version instead of the EXE: extract the ZIP, double-click
+"1 - Install (double-click).bat", type the provider's number, paste the key when asked -
+nothing shows while you paste, that is normal - and press any key when it says
+INSTALL COMPLETE. Same result.)
+
+CHANGING PROVIDER OR KEY LATER
+Double-click "TradingAgents-Setup.exe" again and pick the provider and paste the key you want.
+Nothing is reinstalled, only your provider and key are updated. (With the ZIP version: double-click
+"1 - Install (double-click).bat" again; it offers "Change the AI provider or update API keys (quick)".)
+
+STEP 2 - RUN IT (every day)
+1. Open the "TradingAgents" icon on your Desktop (double-click it). A window opens.
+2. Pick or type a ticker (e.g. AAPL, NVDA, SPY, BTC-USD), then click Analyze.
+3. It analyzes the ticker as of today's date. The list on the right shows each analyst finishing
+   as the agent team works; a full run usually takes several minutes. Leave the window open.
+   (On weekends, holidays or before the market opens it uses the latest available prices.)
+
+WHERE THE FINAL TRADING DECISION APPEARS
+- In the same window, when the run ends: a big colour badge (BUY green, OVERWEIGHT light green,
+  HOLD amber, UNDERWEIGHT orange, SELL red, REVIEW grey) with a one-line meaning, the key reasons
+  under "Why", and a card for each analyst, the bull vs bear debate, the trader and the risk team
+  (click a card to open it).
+- "Open full report" opens the complete text report in Notepad. Every report is also saved in the
+  "reports" folder inside %LOCALAPPDATA%\TradingAgents, named like  SPY_2026-09-28_0930.txt  (with a matching
+  .json file the window reads). The top of the text report shows the FINAL DECISION and which AI
+  provider and models produced it; below it is the Portfolio Manager's reasoning, then the full
+  report from every agent.
+- "Past reports" (top right) lists every earlier report; click one to open it again.
+- Prefer the old black window? Double-click "Run TradingAgents (console).bat" in the folder
+  %LOCALAPPDATA%\TradingAgents. It asks for a ticker, prints the decision between two ===== lines
+  and opens the text report in Notepad.
+The decision uses a 5-step scale:
+  BUY          = buy / open a position
+  OVERWEIGHT   = lean buy (hold more than a normal position)
+  HOLD         = keep what you have, no change
+  UNDERWEIGHT  = lean sell (trim, hold less than normal)
+  SELL         = sell / exit
+  REVIEW       = the AI gave no clear rating; read the Portfolio Manager section yourself
+
+WHAT IT COSTS
+TradingAgents is free. Each run uses the AI through YOUR account with the provider you
+picked, billed per use. Every run makes at least a dozen AI requests, and more when analysts
+fetch data, so the cost per run varies with the ticker and how much news/data there is.
+After your first run, check the usage page in your provider's console to see the real cost,
+and set a monthly spend limit there if the console offers one.
+
+If you switch to DeepSeek (TradingAgents window > "AI settings"), the analysts use deepseek-flash and the
+final decisions use deepseek-v4-pro. DeepSeek publishes its price per million tokens at
+platform.deepseek.com; the real cost of a run is shown on your DeepSeek usage page after you run it.
+
+WHERE REPORTS ARE SAVED (version 1.4.3 and later)
+New reports are saved in the "reports" folder inside C:\Users\<you>\AppData\Local\TradingAgents
+(use "Open reports folder" under Past reports). Reports from older versions stay in the
+"TradingAgents Reports" folder on your Desktop and are still listed under Past reports.
+
+PAPER TRADING WITH ALPACA (version 1.5.0 and later, optional, practice money only)
+Setup, once: make a free Alpaca PAPER account (alpaca.markets > Paper Trading), generate an API key
+there, then in the TradingAgents window click "Alpaca settings" (on the New analysis screen), paste the
+Key ID and the Secret, click "Test connection", then "Save". The keys are saved only on this PC (in the
+same .env file as your AI key), are never shown again, and only paper keys work; the program refuses
+to talk to anything but Alpaca's paper server.
+- Place Paper Trade: on the result screen the green "Place Paper Trade" button opens a small window.
+  It asks how many shares EVERY time, shows the estimated cost, and lets you choose Market or Limit
+  (Limit is pre-filled when the report has an Entry Price). Nothing is ordered until you confirm, and an
+  analysis never orders anything by itself. If the team's rating is SELL or UNDERWEIGHT the button
+  sells shares you already hold instead (it tells you if you hold none). US stocks and ETFs only.
+- Morning auto-sell (optional): tick the box in "Alpaca settings". Every weekday at 9:00 AM New York time
+  (the program works out what time that is on your PC) it analyses each stock held in your paper account
+  and sends a sell order for any rated SELL or UNDERWEIGHT; everything else is left alone. The PC must be
+  on and you must be signed in. Orders sent before 9:30 AM wait for the market to open. The summary is
+  written to reports\auto-sell-YYYY-MM-DD.txt and shown under "Auto-sell log". "Run auto-sell now (test)"
+  there offers a dry run that sends no orders.
+- Paper trading is practice money. Nothing here is financial advice.
+
+UPDATES AND DIAGNOSTICS (two icons on your Desktop - both run ONLY when you double-click them)
+- "TradingAgents - Check for updates": looks at a public web page for a newer, signed version.
+  The update is signed by the person who set this up; your PC checks that signature and a
+  fingerprint of every file before doing anything. It shows you what changed and asks you to type
+  Y. Nothing is installed without your Y. A rollback copy of what you have is saved first, and your
+  API key / .env file is never touched. To go back after an update, open the folder
+  %LOCALAPPDATA%\TradingAgents and double-click "Undo last update.bat".
+  Every check is written to %LOCALAPPDATA%\TradingAgents\update.log
+- "TradingAgents - Send diagnostics": makes one zip file on your Desktop (versions, installed
+  packages, the last lines of the logs, your settings with every value hidden). You can open it
+  and read it. Nothing is sent anywhere - if you want help, YOU attach it to your Upwork message.
+- Nobody can connect to your PC. There is no remote access and no usage tracking. There is no
+  background program either, with one optional exception: if YOU switch on the morning auto-sell in
+  "Alpaca settings", one Windows scheduled task called "TradingAgents Morning Auto-Sell" exists until
+  you switch it off there. The only network requests are your PC downloading the public update files
+  when you click "Check for updates" and, only if you saved Alpaca paper keys, requests to Alpaca's
+  PAPER servers (paper-api.alpaca.markets, plus data.alpaca.markets for prices) when you test the
+  connection, place a paper trade or run the auto-sell.
+
+IF SOMETHING GOES WRONG
+- The window shows a PROBLEM message in plain English, naming your provider and what to do
+  (for example: key rejected, out of credit, rate limit, no internet).
+- Install details: %LOCALAPPDATA%\TradingAgents\install-log.txt
+  (paste %LOCALAPPDATA%\TradingAgents into the File Explorer address bar to open the folder)
+- Last run details: %LOCALAPPDATA%\TradingAgents\last-run-log.txt and last-error-log.txt
+  (send these to whoever set this up for you; they never contain your API keys)
+- "already exists and looks like your own copy of the TradingAgents source code": the
+  installer found a git checkout at %LOCALAPPDATA%\TradingAgents and left it alone. Rename or
+  move that folder, then run the installer again.
+- Your keys are stored only on this PC in %LOCALAPPDATA%\TradingAgents\.env - don't share
+  that file.
+- To uninstall: delete the folder %LOCALAPPDATA%\TradingAgents, the Desktop icon and (if it exists)
+  the "TradingAgents Reports" folder on your Desktop. (Python stays installed; remove it from Windows Settings >
+  Apps if you want.)

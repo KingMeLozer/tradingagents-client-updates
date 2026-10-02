@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "product": "tradingagents-windows",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "released": "2026-10-02",
   "tradingagents_commit": "35543d0248bf89fcb92b17a15858ad0c0e940687",
-  "notes": "Version 1.5.0\n- Optional Alpaca PAPER trading (practice money only). Click \"Alpaca settings\" on the New analysis screen to add your paper keys and test the connection.\n- New green \"Place Paper Trade\" button next to the recommendation: you choose the number of shares each time, see the estimated cost, and pick Market or Limit. Nothing is ordered until you confirm.\n- Optional morning auto-sell: every weekday at 9:00 AM New York time it re-analyses what you hold in the paper account and sells anything rated SELL or UNDERWEIGHT. Summary under \"Auto-sell log\"; \"Run auto-sell now (test)\" has a dry-run mode.\n- Updates and installs are more reliable (they close an open TradingAgents window and retry if a file is locked).",
+  "notes": "Version 1.5.1\n- Adds the Alpaca paper-trading files (Place Paper Trade, Alpaca settings, morning auto-sell). Run \"Check for updates\" again after 1.5.0.",
   "files": [
     {
       "path": "run.ps1",
@@ -45,6 +45,16 @@
       "path": "ta-app.ps1",
       "sha256": "8fc4b279188eb0f1b092b1c81ca574cad89f6ac08c61a4e189b904f2a73a5648",
       "size": 134021
+    },
+    {
+      "path": "alpaca_client.py",
+      "sha256": "45ff2da89805d4ad7d1091974d0cc87a038c7b85091786cae8bdd3b94d7ae69b",
+      "size": 20588
+    },
+    {
+      "path": "auto_sell.py",
+      "sha256": "73d6193ddc695cdeabeed475db4a4124bc8652b96c7e9ac4a9bbb0cb569a1a8d",
+      "size": 16100
     }
   ]
 }
