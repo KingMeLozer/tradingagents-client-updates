@@ -1,10 +1,10 @@
 {
   "schema": 1,
   "product": "tradingagents-windows",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "released": "2026-10-02",
   "tradingagents_commit": "35543d0248bf89fcb92b17a15858ad0c0e940687",
-  "notes": "Version 1.4.3\n- New \"AI settings\" button: switch TradingAgents to DeepSeek (paste your DeepSeek key once).\n- Reports are now saved inside the TradingAgents folder (reports), not on the Desktop.\n- \"Open full report\" no longer crashes if a file is blocked or missing; it shows a plain message instead.",
+  "notes": "Version 1.4.4\n- Behind-the-scenes update: updates and installs now close an open TradingAgents window first and retry if Windows or antivirus is holding a file, so \"Access to the path ... is denied\" no longer stops them.\n- No change to how TradingAgents looks or works. This prepares the next update (1.5.0).",
   "files": [
     {
       "path": "run.ps1",
@@ -33,8 +33,8 @@
     },
     {
       "path": "update.ps1",
-      "sha256": "78c939bb3711935c0772ce221b1e930d810539fd7a742cc02aa4d48914d70e3e",
-      "size": 20927
+      "sha256": "b59ccc58255f66d1b8a5bdfbcb470c8e143aacd2af5421b5b07834345f567532",
+      "size": 25220
     },
     {
       "path": "diagnostics.ps1",
